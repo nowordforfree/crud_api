@@ -8,29 +8,18 @@ var validateEmail = function(email) {
     return emailregex.test(email);
 }
 var validatePhone = function(phone) {
-    var phoneregex = /^\(?([0-9]{3})\)?([ -]?)([0-9]{3})\2([0-9]{4})$/;
+    var phoneregex = /^$|^\(?([0-9]{3})\)?([ -]?)([0-9]{3})\2([0-9]{4})$/;
     return phoneregex.test(phone);
 }
 
 var schema = new mongoose.Schema({
-    username: {
-        type: String,
-        trim: true,
-        required: true
-    },
+    username: { type: String, trim: true, required: true },
     firstname: { type: String, default: '' },
     lastname: { type: String, default: '' },
-    phone: {
-        default: '',
-        type: String,
-        trim: true,
+    phone: { default: '', type: String, trim: true,
         validate: [validatePhone, 'Please put phone number in following format: (xxx) xxx xxxx or (xxx)-xxx-xxxx or xxx-xxx-xxxx or xxxxxxxxxx']
     },
-    email: {
-        type: String,
-        trim: true,
-        unique: true,
-        required: 'Email address required',
+    email: { type: String, trim: true, unique: true, required: 'Email address required',
         validate: [validateEmail, 'Please provide valid email address']
     }
 })
