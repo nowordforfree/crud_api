@@ -13,7 +13,7 @@ var validatePhone = function(phone) {
 }
 
 var schema = new mongoose.Schema({
-    username: { type: String, trim: true, required: true },
+    username: { type: String, trim: true, unique: true, required: true },
     firstname: { type: String, default: '' },
     lastname: { type: String, default: '' },
     phone: { default: '', type: String, trim: true,
